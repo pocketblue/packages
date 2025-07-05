@@ -1,6 +1,6 @@
 Name:           rmtfs
 Version:        1.1
-Release:        1^patched
+Release:        100^patched
 Summary:        Qualcomm Remote Filesystem Service Implementation
 
 License:        BSD-3-Clause
