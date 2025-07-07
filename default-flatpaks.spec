@@ -9,6 +9,7 @@ BuildArch:        noarch
 Requires:         flatpak libnotify
 Requires(post):   systemd
 Requires(postun): systemd
+BuildRequires:    systemd-rpm-macros
 %{?systemd_user_requires}
 
 %description
