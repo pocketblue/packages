@@ -1,13 +1,13 @@
-Name:           default-flatpaks
-Version:        1.0
-Release:        1%{?dist}
-Summary:        install some flatpaks on first system boot
-License:        AGPL-3.0
-URL:            https://github.com/gmanka-flatpaks/default-flatpaks
-Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-BuildArch:      noarch
-Requires:       flatpak
-Requires(post): systemd
+Name:             default-flatpaks
+Version:          1.1
+Release:          1%{?dist}
+Summary:          install some flatpaks on first system boot
+License:          AGPL-3.0
+URL:              https://github.com/gmanka-flatpaks/default-flatpaks
+Source0:          %{url}/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+BuildArch:        noarch
+Requires:         flatpak libnotify
+Requires(post):   systemd
 Requires(postun): systemd
 %{?systemd_user_requires}
 
