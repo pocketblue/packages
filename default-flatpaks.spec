@@ -1,5 +1,5 @@
 Name:             default-flatpaks
-Version:          1.1
+Version:          1.2
 Release:          1%{?dist}
 Summary:          install some flatpaks on first system boot
 License:          AGPL-3.0
@@ -22,10 +22,12 @@ install some flatpaks on first system boot
 install -Dm0644 apps-list %{buildroot}%{_sysconfdir}/default-flatpaks/apps-list
 install -Dm0755 default-flatpaks.sh %{buildroot}%{_bindir}/default-flatpaks
 install -Dm0644 default-flatpaks.service %{buildroot}%{_userunitdir}/default-flatpaks.service
-install -d -m 1777 %{buildroot}%{_localstatedir}/lib/default-flatpaks
+install -Dm0644 default-flatpaks.tmpfiles %{buildroot}%{_tmpfilesdir}/default-flatpaks.conf
+install -Dm0644 90-default-flatpaks.preset %{buildroot}%{_prefix}/lib/systemd/user-preset/90-default-flatpaks.preset
 
 %post
 %systemd_user_post default-flatpaks.service
+%tmpfiles_create %{_tmpfilesdir}/default-flatpaks.conf
 
 %preun
 %systemd_user_preun default-flatpaks.service
@@ -39,6 +41,7 @@ install -d -m 1777 %{buildroot}%{_localstatedir}/lib/default-flatpaks
 %config(noreplace) %{_sysconfdir}/default-flatpaks/apps-list
 %{_bindir}/default-flatpaks
 %{_userunitdir}/default-flatpaks.service
-%dir %attr(1777,root,root) %{_localstatedir}/lib/default-flatpaks
+%{_prefix}/lib/systemd/user-preset/90-default-flatpaks.preset
+%{_tmpfilesdir}/default-flatpaks.conf
 %ghost %{_localstatedir}/lib/default-flatpaks/done
 
