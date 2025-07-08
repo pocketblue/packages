@@ -26,7 +26,7 @@ install -Dm0644 default-flatpaks.tmpfiles %{buildroot}%{_tmpfilesdir}/default-fl
 install -Dm0644 90-default-flatpaks.preset %{buildroot}%{_prefix}/lib/systemd/user-preset/90-default-flatpaks.preset
 
 %post
-%systemd_user_post default-flatpaks.service
+%systemd_user_post --global default-flatpaks.service
 %tmpfiles_create %{_tmpfilesdir}/default-flatpaks.conf
 
 %preun
