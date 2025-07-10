@@ -5,7 +5,7 @@ Summary:        Mobile and privacy friendly configuration for current standard a
 
 License:        Mozilla Public License Version 2.0
 URL:            https://gitlab.postmarketos.org/postmarketOS/mobile-config-firefox
-Source:         %{url}/-/archive/v%{version}/%{name}-%{version}.tar.gz
+Source:         %{url}/-/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  make
 
