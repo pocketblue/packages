@@ -9,6 +9,8 @@ Source:         %{url}/-/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  make
 
+%global debug_package %{nil}
+
 %description
 Mobile and privacy friendly configuration for current standard and extended support releases of Firefox
 
