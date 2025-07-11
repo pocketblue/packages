@@ -1,0 +1,47 @@
+--- a/mobile-config-autoconfig.js	2025-07-11 03:01:24.004034044 +0300
++++ b/mobile-config-autoconfig.js	2025-07-11 03:02:50.190186319 +0300
+@@ -2,7 +2,7 @@
+ // SPDX-License-Identifier: MPL-2.0
+ //
+ // Generate and update userChrome.css and userContent.css for the user's
+-// profile from CSS fragments in /etc/mobile-config-firefox, depending on the
++// profile from CSS fragments in /app/etc/firefox/mobile-config-firefox, depending on the
+ // installed Firefox version. Set various defaults for about:config options in
+ // set_default_prefs().
+ //
+@@ -146,7 +146,7 @@
+         return g_fragments_cache[name];
+ 
+     var ret = [];
+-    var path = "/etc/mobile-config-firefox/" + name + ".files";
++    var path = "/app/etc/firefox/mobile-config-firefox/" + name + ".files";
+     log("Reading fragments from file: " + path);
+     var file = new FileUtils.File(path);
+ 
+@@ -160,7 +160,7 @@
+         var line = {};
+         has_more = istream.readLine(line);
+         if (css_fragment_check_firefox_version(line.value))
+-            ret.push("/etc/mobile-config-firefox/" + line.value);
++            ret.push("/app/etc/firefox/mobile-config-firefox/" + line.value);
+ 
+     } while (has_more);
+ 
+@@ -186,7 +186,7 @@
+ // file: return of css_file_get()
+ function css_file_delete_outdated(name, file) {
+     var depends = css_file_get_fragments(name).slice(); /* copy the array */
+-    depends.push("/etc/mobile-config-firefox/" + name + ".files");
++    depends.push("/app/etc/firefox/mobile-config-firefox/" + name + ".files");
+     for (var i in depends) {
+         var depend = depends[i];
+         var file_depend = new FileUtils.File(depend);
+@@ -204,7 +204,7 @@
+ }
+ 
+ // Create userChrome.css / userContent.css in the user's profile, based on the
+-// CSS fragments stored in /etc/mobile-config-firefox.
++// CSS fragments stored in /app/etc/firefox/mobile-config-firefox.
+ // name: either "userChrome" or "userContent"
+ // file: return of css_file_get()
+ function css_file_merge(name, file) {
