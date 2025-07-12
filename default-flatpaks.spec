@@ -1,5 +1,5 @@
 Name:             default-flatpaks
-Version:          1.6
+Version:          1.7
 Release:          1%{?dist}
 Summary:          install some flatpaks on first system boot
 License:          AGPL-3.0
