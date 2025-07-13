@@ -1,9 +1,9 @@
-%global commit 907046162b6783c3e634ca50d45e68e4f3ca1505
+%global commit b7d9e1e89b25e76ea19aea746619e72ca6ff36bc
 %global id     nekotorch@nekocwd.gitlab.com
 
 Name:          gnome-shell-extension-nekotorch
 Version:       48.0
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       flash‑led / torch extension for gnome shell
 License:       GPLv3+
 URL:           https://gitlab.com/gmanka/NekoTorch
