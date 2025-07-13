@@ -30,9 +30,6 @@ cp -a *.js metadata.json stylesheet.css icons  $extpath/
 install -Dm0644 schemas/com.gitlab.nekocwd.nekotorch.gschema.xml %{buildroot}%{_datadir}/glib-2.0/schemas/com.gitlab.nekocwd.nekotorch.gschema.xml
 install -Dm0644 99-flash.rules %{buildroot}%{_udevrulesdir}/99-flash.rules
 
-%pre
-getent group torch >/dev/null || groupadd -r torch
-
 %post
 udevadm control --reload-rules 2>/dev/null || :
 
