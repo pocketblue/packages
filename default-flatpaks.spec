@@ -1,5 +1,5 @@
 Name:             default-flatpaks
-Version:          1.7
+Version:          1.8
 Release:          1%{?dist}
 Summary:          install some flatpaks on first system boot
 License:          AGPL-3.0
@@ -21,7 +21,6 @@ install some flatpaks on first system boot
 %build
 %install
 install -Dm0644 apps-list %{buildroot}%{_sysconfdir}/default-flatpaks/apps-list
-install -Dm0755 default-flatpaks.sh %{buildroot}%{_bindir}/default-flatpaks
 install -Dm0644 default-flatpaks.tmpfiles %{buildroot}%{_tmpfilesdir}/default-flatpaks.conf
 install -Dm0644 flatpak-add-flathub-repo.service %{buildroot}%{_unitdir}/flatpak-add-flathub-repo.service
 install -Dm0644 default-flatpaks.service %{buildroot}%{_userunitdir}/default-flatpaks.service
@@ -46,7 +45,6 @@ install -Dm0644 90-flatpak-add-flathub-repo.preset %{buildroot}%{_prefix}/lib/sy
 %doc readme.md
 %config(noreplace) %{_sysconfdir}/default-flatpaks/apps-list
 %{_tmpfilesdir}/default-flatpaks.conf
-%{_bindir}/default-flatpaks
 %{_unitdir}/flatpak-add-flathub-repo.service
 %{_userunitdir}/default-flatpaks.service
 %{_prefix}/lib/systemd/system-preset/90-flatpak-add-flathub-repo.preset
