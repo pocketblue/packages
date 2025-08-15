@@ -1,6 +1,6 @@
 Name:             default-flatpaks
-Version:          1.8
-Release:          1%{?dist}
+Version:          1.9
+Release:          0%{?dist}
 Summary:          install some flatpaks on first system boot
 License:          AGPL-3.0
 URL:              https://github.com/gmanka-flatpaks/default-flatpaks
@@ -24,21 +24,22 @@ install -Dm0644 apps-list %{buildroot}%{_sysconfdir}/default-flatpaks/apps-list
 install -Dm0644 default-flatpaks.tmpfiles %{buildroot}%{_tmpfilesdir}/default-flatpaks.conf
 install -Dm0644 flatpak-add-flathub-repo.service %{buildroot}%{_unitdir}/flatpak-add-flathub-repo.service
 install -Dm0644 default-flatpaks.service %{buildroot}%{_userunitdir}/default-flatpaks.service
+install -Dm0644 default-flatpaks.path %{buildroot}%{_userunitdir}/default-flatpaks.path
 install -Dm0644 90-default-flatpaks.preset %{buildroot}%{_prefix}/lib/systemd/user-preset/90-default-flatpaks.preset
 install -Dm0644 90-flatpak-add-flathub-repo.preset %{buildroot}%{_prefix}/lib/systemd/system-preset/90-flatpak-add-flathub-repo.preset
 
 %post
 %systemd_post      flatpak-add-flathub-repo.service
-%systemd_user_post default-flatpaks.service
+%systemd_user_post default-flatpaks.service default-flatpaks.path
 %tmpfiles_create   %{_tmpfilesdir}/default-flatpaks.conf
 
 %preun
 %systemd_preun      flatpak-add-flathub-repo.service
-%systemd_user_preun default-flatpaks.service
+%systemd_user_preun default-flatpaks.service default-flatpaks.path
 
 %postun
 %systemd_postun_with_restart      flatpak-add-flathub-repo.service
-%systemd_user_postun_with_restart default-flatpaks.service
+%systemd_user_postun_with_restart default-flatpaks.service default-flatpaks.path
 
 %files
 %license license.md
@@ -47,6 +48,8 @@ install -Dm0644 90-flatpak-add-flathub-repo.preset %{buildroot}%{_prefix}/lib/sy
 %{_tmpfilesdir}/default-flatpaks.conf
 %{_unitdir}/flatpak-add-flathub-repo.service
 %{_userunitdir}/default-flatpaks.service
+%{_userunitdir}/default-flatpaks.path
 %{_prefix}/lib/systemd/system-preset/90-flatpak-add-flathub-repo.preset
 %{_prefix}/lib/systemd/user-preset/90-default-flatpaks.preset
-%ghost %{_localstatedir}/lib/default-flatpaks/initialized
+%ghost %{_localstatedir}/lib/default-flatpaks/flathub-initialized
+%ghost %{_localstatedir}/lib/default-flatpaks/default-flatpaks-initialized
