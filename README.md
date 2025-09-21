@@ -7,6 +7,7 @@ These packages are not available in any other repository
 - default-flatpaks
 - mobile-config-firefox
 - nekotorch
+- q6voiced
 
 ### Backported packages
 

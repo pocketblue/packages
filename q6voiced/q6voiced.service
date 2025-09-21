@@ -1,0 +1,16 @@
+[Unit]
+Description=q6voice call audio routing
+Requires=dbus.service
+ConditionPathExists=/etc/q6voiced.conf
+
+[Service]
+EnvironmentFile=/etc/q6voiced.conf
+ExecStart=/usr/bin/q6voiced hw:${q6voice_card},${q6voice_device}
+KillMode=process
+Restart=always
+RestartSec=1
+User=nobody
+Group=audio
+
+[Install]
+WantedBy=multi-user.target
