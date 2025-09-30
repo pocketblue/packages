@@ -8,6 +8,7 @@ These packages are not available in any other repository
 - mobile-config-firefox
 - nekotorch
 - q6voiced
+- ath10k-shutdown
 
 ### Backported packages
 
