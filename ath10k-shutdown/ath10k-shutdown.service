@@ -1,0 +1,12 @@
+[Unit]
+Description=ensure that ath10k modules are disabled before shutdown, required for proper shutdown process on oneplus6 and mipad5
+After=network-online.target graphical.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/modprobe ath10k_snoc ath10k_core
+ExecStop=/usr/bin/rmmod ath10k_snoc ath10k_core
+
+[Install]
+WantedBy=network-online.target
