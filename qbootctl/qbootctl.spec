@@ -1,6 +1,6 @@
 Name:           qbootctl
 Version:        0.2.2
-Release:        %autorelease
+Release:        2%{?dist}
 Summary:        CLI tool for manipulating A/B slots on Android devices
 License:        GPL-3.0-or-later
 URL:            https://github.com/linux-msm/%{name}
