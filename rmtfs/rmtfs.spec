@@ -1,12 +1,11 @@
 Name:           rmtfs
-Version:        1.1
-Release:        100^patched
+Version:        1.1.1
+Release:        %autorelease
 Summary:        Qualcomm Remote Filesystem Service Implementation
 
 License:        BSD-3-Clause
 URL:            https://github.com/linux-msm/rmtfs/
 Source:         %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
-Patch:          https://patch-diff.githubusercontent.com/raw/linux-msm/rmtfs/pull/20.patch
 
 BuildRequires:  gcc
 BuildRequires:  make
