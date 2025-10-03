@@ -40,6 +40,7 @@ Qualcomm Remote Filesystem Service Implementation.
 %license LICENSE
 %{_bindir}/%{name}
 %{_unitdir}/rmtfs.service
+%{_unitdir}/rmtfs-dir.service
 
 %changelog
 %autochangelog
