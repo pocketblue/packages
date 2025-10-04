@@ -28,13 +28,13 @@ Qualcomm Remote Filesystem Service Implementation.
 %make_install prefix="%{_prefix}"
 
 %post
-%systemd_post rmtfs.service
+%systemd_post rmtfs.service rmtfs-dir.service
 
 %preun
-%systemd_preun rmtfs.service
+%systemd_preun rmtfs.service rmtfs-dir.service
 
 %postun
-%systemd_postun rmtfs.service
+%systemd_postun rmtfs.service rmtfs-dir.service
 
 %files
 %license LICENSE
