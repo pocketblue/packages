@@ -3,7 +3,7 @@
 
 Name:           phrog
 Version:        0.46.0
-Release:        %autorelease
+Release:        2
 Summary:        Mobile-friendly greeter for greetd
 License:        GPL-3.0-only
 URL:            https://github.com/gmankab/phrog
