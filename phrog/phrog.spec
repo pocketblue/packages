@@ -1,12 +1,12 @@
 %global cargo_install_lib 0
-%global commit fdb2c00b61d6093f17f04cc656f197c96de4300c
+%global commit 51ca5a389d7224fd7527490f57253c0c42735d35
 
 Name:           phrog
 Version:        0.46.0
-Release:        2
+Release:        3
 Summary:        Mobile-friendly greeter for greetd
 License:        GPL-3.0-only
-URL:            https://github.com/gmankab/phrog
+URL:            https://github.com/samcday/phrog
 Source0:        %{url}/archive/%{commit}.tar.gz
 Source1:        %{name}-0.46.0-vendor.tar.xz
 

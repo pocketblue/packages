@@ -5,7 +5,7 @@ building phrog rpm requires vendored cargo dependencies tarball
 ### get vendor tarball
 
 ```shell
-git clone https://github.com/gmankab/phrog /tmp/phrog
+git clone https://github.com/samcday/phrog /tmp/phrog
 cd /tmp/phrog
 rust2rpm --path . --vendor=auto
 install -D phrog-0.46.0-vendor.tar.xz ~/rpmbuild/SOURCES/phrog-0.46.0-vendor.tar.xz
