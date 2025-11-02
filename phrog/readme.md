@@ -23,11 +23,11 @@ rpmbuild -bs phrog.spec
 ### local build
 
 ```shell
-mock ~/rpmbuild/SRPMS/phrog-0.46.0-1.fc43.src.rpm
+mock ~/rpmbuild/SRPMS/phrog-0.46.0-3.src.rpm
 ```
 
 ### copr build
 
 ```shell
-copr-cli build pocketblue/extra ~/rpmbuild/SRPMS/phrog-0.46.0-1.fc43.src.rpm
+copr-cli build pocketblue/extra ~/rpmbuild/SRPMS/phrog-0.46.0-3.src.rpm
 ```
