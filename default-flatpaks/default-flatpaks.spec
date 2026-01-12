@@ -1,5 +1,5 @@
 Name:             default-flatpaks
-Version:          1.9
+Version:          1.10
 Release:          0%{?dist}
 Summary:          install some flatpaks on first system boot
 License:          AGPL-3.0
@@ -53,3 +53,6 @@ install -Dm0644 90-flatpak-add-flathub-repo.preset %{buildroot}%{_prefix}/lib/sy
 %{_prefix}/lib/systemd/user-preset/90-default-flatpaks.preset
 %ghost %{_localstatedir}/lib/default-flatpaks/flathub-initialized
 %ghost %{_localstatedir}/lib/default-flatpaks/default-flatpaks-initialized
+
+%changelog
+%autochangelog
