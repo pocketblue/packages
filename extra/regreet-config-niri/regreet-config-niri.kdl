@@ -1,0 +1,5 @@
+hotkey-overlay {
+    skip-at-startup
+}
+
+spawn-at-startup "sh" "-c" "regreet; niri msg action quit --skip-confirmation"
