@@ -1,0 +1,70 @@
+#!/usr/bin/bash
+# -*- mode: shell-script; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
+# ex: ts=8 sw=4 sts=4 et filetype=bash
+# This file is part of Xiaomi Pad 6 (pipa) suport package.
+
+set -e
+
+COMMAND="$1"
+KERNEL_VERSION="$2"
+KERNEL_IMAGE="$4"
+DTB="/usr/lib/modules/$KERNEL_VERSION/dtb"
+INITRD_IMAGE="/usr/lib/modules/$KERNEL_VERSION/initramfs-$KERNEL_VERSION.img"
+KERNEL_DTB_IMAGE="${KERNEL_IMAGE}-dtb"
+ABOOT_IMAGE="/boot/boot-$KERNEL_VERSION.img"
+
+# Exit if mkbootimg not available
+command -v mkbootimg > /dev/null 2>&1 || exit 0
+
+# Generate and flash boot only on kernel add
+[ "$COMMAND" != "add" ] && exit 0
+
+log() {
+    if [ "$KERNEL_INSTALL_VERBOSE" -gt 0 ]; then
+        printf 'android-boot: %s\n' "$*"
+    fi
+}
+
+log "Building initramfs for $KERNEL_VERSION"
+
+dracut --force --kver "$KERNEL_VERSION" "$INITRD_IMAGE"
+
+log "Building android boot for $KERNEL_VERSION"
+
+cat "$KERNEL_IMAGE" "/usr/lib/modules/$KERNEL_VERSION/dtb" > "$KERNEL_DTB_IMAGE"
+
+CMDLINE="$(cat /etc/cmdline 2> /dev/null || true)"
+
+[ -z "$CMDLINE" ] && {
+    log "/etc/cmdline empty or not found. Reusing current cmdline"
+    CMDLINE="$(</proc/cmdline)"
+}
+
+mkbootimg \
+    --header_version 0 \
+    --kernel_offset 0x00008000 \
+    --base 0x00000000 \
+    --ramdisk_offset 0x01000000 \
+    --second_offset 0x00f00000 \
+    --tags_offset 0x00000100 \
+    --pagesize 4096 \
+    --kernel "$KERNEL_DTB_IMAGE" \
+    --ramdisk "$INITRD_IMAGE" \
+    --cmdline "$CMDLINE" \
+    -o "$ABOOT_IMAGE"
+
+log "Boot has been built to /boot/boot-$KERNEL_VERSION.img"
+
+# Exit if qbootctl not available
+command -v qbootctl > /dev/null 2>&1 || exit 0
+
+if [ -e '/dev/disk/by-partlabel/boot_a' ]; then
+    log "Reflashing boot image"
+    slot="$(qbootctl -c 2> /dev/null | awk '{ print $3 }')"
+    log "Detected boot slot: $slot"
+    device="/dev/disk/by-partlabel/boot$slot"
+    log "Flashing boot to device $device"
+    dd if="$ABOOT_IMAGE" of="$device" > /dev/null 2>&1
+fi
+log "Done"
+
