@@ -1,0 +1,7 @@
+*.zip
+*.src.rpm
+*.tar.gz
+results_*/
+*/*.log
+*/*build
+*.log
