@@ -1,8 +1,8 @@
-### fedora packages for nothing phone 1 (spacewar) support
+# Packages for Nothing Phone 1 (spacewar) support
 
-this rpm specs are based on postmarketos packages
+These rpm specs are based on postmarketOS packages
 
-special thanks to @JIaxyga
+Special thanks to @JIaxyga
 
 ### links
 
