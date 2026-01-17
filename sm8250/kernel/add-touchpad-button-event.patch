@@ -1,0 +1,31 @@
+From 97f54a67567f943950d4cedfaf5e93c4c48a24e6 Mon Sep 17 00:00:00 2001
+From: Seyed Danial Movahed <Movaheddanial@gmail.com>
+Date: Thu, 7 Aug 2025 17:12:07 +0330
+Subject: [PATCH] input: keyboard: nanosic_803: add touchpad button event
+
+---
+ drivers/input/keyboard/nanosic_803.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/input/keyboard/nanosic_803.c b/drivers/input/keyboard/nanosic_803.c
+index 8345e394278afe..eb7feb68be1553 100644
+--- a/drivers/input/keyboard/nanosic_803.c
++++ b/drivers/input/keyboard/nanosic_803.c
+@@ -27,6 +27,8 @@
+ #define TOUCH_TIMEOUT_MS 75
+ #define INT_ADDR_MAX_BYTES 4
+ 
++#define NANOSIC_CLICK_BYTE_OFFSET 4
++
+ static const unsigned int hid_to_linux_keycode[] = {
+ 	[0x04] = KEY_A,
+ 	[0x05] = KEY_B,
+@@ -564,6 +566,8 @@ static void nanosic_handle_touchpad_mt(struct nanosic_803_priv *nanosic_dev, cha
+ 		input_report_abs(nanosic_dev->touchpad_input_dev, ABS_MT_POSITION_Y, y);
+ 	}
+ 
++	input_report_key(nanosic_dev->touchpad_input_dev, BTN_LEFT, (uint16_t)buf[NANOSIC_CLICK_BYTE_OFFSET]);
++	
+ 	input_mt_sync_frame(nanosic_dev->touchpad_input_dev);
+ 	input_sync(nanosic_dev->touchpad_input_dev);
+ 
