@@ -32,7 +32,6 @@ install -Dm644 %{name}.service -t %{buildroot}%{_unitdir}/
 %systemd_postun_with_restart %{name}.service
 
 %files
-%license LICENSE
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 
