@@ -15,6 +15,8 @@ Requires:       pil-squasher
 %description
 %{summary}.
 
+%global debug_package %{nil}
+
 %prep
 %autosetup -n %{name}-%{commit}
 
