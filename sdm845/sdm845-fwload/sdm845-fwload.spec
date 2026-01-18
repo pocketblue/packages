@@ -1,4 +1,4 @@
-%global commit d93ae53320ff866d55cb9be64afc10592e760c1c
+%global commit 273c8301afbdd53d63c478ab9b95ad44ba9738df
 
 Name:           sdm845-fwload
 Version:        0.1
