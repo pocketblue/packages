@@ -2,7 +2,7 @@
 %global soc      sm8150
 %global tag      v6.17.0-sm8150
 Version:         6.17.0
-Release:         6.%{soc}%{?dist}
+Release:         7.%{soc}%{?dist}
 ExclusiveArch:   aarch64
 Name:            kernel
 Summary:         mainline kernel for %{soc}
