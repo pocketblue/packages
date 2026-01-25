@@ -1,7 +1,7 @@
 Name: kernel
 ExclusiveArch: aarch64
 Version: 6.18.0
-Release: 1.sm7150
+Release: 2.sm7150
 Summary: AIO package for linux kernel, modules and headers for SM7150 platform.
 URL: https://github.com/sm7150-mainline/linux
 
