@@ -1,7 +1,7 @@
 %global _ath10k_fw_commit 792c716c85c06861c4d17bce5ec21fba7f0f7de6
 %global _linux_fw_commit  06a743fd69999590e88199bb9edba9d5b73d6ad1
 
-Name: qcom-sm7150-athernos-firmware
+Name: qcom-sm7150-atheros-firmware
 Version: 1.0
 Release: 1
 URL: https://github.com/sm7150-mainline/firmware-qcom-sm7150-ath10k

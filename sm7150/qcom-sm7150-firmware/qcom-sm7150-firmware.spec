@@ -1,12 +1,12 @@
 Name: qcom-sm7150-firmware
 Version: 1.0
-Release: 1
+Release: 2
 Summary: Firmware package for SM7150 platform
 Source1: module-setup.sh
 License: Unfree
 
 Requires: qcom-firmware
-Requires: qcom-sm7150-athernos-firmware
+Requires: qcom-sm7150-atheros-firmware
 Requires: xiaomi-davinci-firmware
 Requires: dracut
 
