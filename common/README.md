@@ -9,6 +9,7 @@ These packages are not available in any other repository
 - nekotorch
 - q6voiced
 - ath10k-shutdown
+- qca-swiss-army-knife
 
 ### Backported packages
 
