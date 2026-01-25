@@ -2,13 +2,15 @@
 %global _linux_fw_commit  06a743fd69999590e88199bb9edba9d5b73d6ad1
 
 Name: qcom-sm7150-atheros-firmware
-Version: 1.0
-Release: 1
+Version: 20260110
+Release: 2
 URL: https://github.com/sm7150-mainline/firmware-qcom-sm7150-ath10k
 Summary: Athernos firmware package for SM7150 platform
 Source1: %{url}/archive/%{_ath10k_fw_commit}/ath10k-firmware.tar.gz
 Source2: https://gitlab.com/kernel-firmware/linux-firmware/-/archive/%{_linux_fw_commit}/linux-firmware.tar.gz
 License: Unfree
+
+Provides: atheros-firmware = 20260110
 
 BuildRequires: qca-swiss-army-knife, xz
 
