@@ -3,7 +3,7 @@
 
 Name: qcom-sm7150-atheros-firmware
 Version: 20260110
-Release: 2
+Release: 3
 URL: https://github.com/sm7150-mainline/firmware-qcom-sm7150-ath10k
 Summary: Athernos firmware package for SM7150 platform
 Source1: %{url}/archive/%{_ath10k_fw_commit}/ath10k-firmware.tar.gz
@@ -25,7 +25,7 @@ tar -xzf %{SOURCE2}
 cd firmware-qcom-sm7150-ath10k-%{_ath10k_fw_commit}
 
 ath10k-bdencoder -c board-2.json
-xz --compress board-2.json
+xz --compress board-2.bin
 
 ath10k-fwencoder --create \
 	--features=wowlan,no-nwifi-decap-4addr-padding,allows-mesh-bcast,mgmt-tx-by-ref,non-bmi,single-chan-info-per-channel \
