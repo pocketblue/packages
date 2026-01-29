@@ -18,8 +18,10 @@ BuildRequires:  meson
 BuildRequires:  systemd-rpm-macros
 
 %description
-%{summary}. It is a port of the original Android bootctrl HAL developed by
-Qualcomm, modified to build on Linux and provide a friendly CLI interface.
+%{summary}.
+It is a port of the original Android boot control HAL developed by
+Qualcomm, modified to build on Linux and provide a friendly CLI
+interface.
 
 %prep
 %autosetup -p1
