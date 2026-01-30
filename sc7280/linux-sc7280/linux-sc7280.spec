@@ -18,7 +18,7 @@ Provides:      kernel-headers       = %{version}-%{release}
 Provides:      kernel-modules       = %{version}-%{release}
 Provides:      kernel-modules-core  = %{version}-%{release}
 
-BuildRequires:   bc bison dwarves diffutils elfutils-devel findutils gcc gcc-c++ git-core hmaccalc hostname make openssl-devel perl-interpreter rsync tar which flex bzip2 xz zstd python3 python3-devel python3-pyyaml rust rust-src bindgen rustfmt clippy opencsd-devel net-tools
+BuildRequires:   bc bison dwarves diffutils elfutils-devel findutils gcc gcc-c++ git-core hmaccalc hostname make openssl openssl-devel perl-interpreter rsync tar which flex bzip2 xz zstd python3 python3-devel python3-pyyaml rust rust-src bindgen rustfmt clippy opencsd-devel net-tools glibc-static
 
 %global uname_r %{version}-%{release}.%{_target_cpu}
 
@@ -27,10 +27,9 @@ mainline kernel for %{soc}
 
 %prep
 %autosetup -n linux-%{version}-%{soc}
-make defconfig %{soc}.config
 
 %build
-sed -i '/^CONFIG_LOCALVERSION=/d' .config
+make defconfig
 scripts/kconfig/merge_config.sh -m .config %{SOURCE1}
 make olddefconfig
 make EXTRAVERSION="-%{release}.%{_target_cpu}" LOCALVERSION= -j%{?_smp_build_ncpus} Image modules dtbs
