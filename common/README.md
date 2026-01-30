@@ -18,7 +18,6 @@ Packages from other repositories backported to older Fedora branches
 | package | source |
 |---------|--------|
 | qbootctl | [fedora-remix-mobility/packages](https://github.com/fedora-remix-mobility/packages) |
-| tqftpserv | upstream fedora |
 
 ### Patched packages
 
