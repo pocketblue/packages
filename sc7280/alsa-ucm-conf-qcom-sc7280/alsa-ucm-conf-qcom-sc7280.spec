@@ -1,11 +1,11 @@
-%global commit e2f6767c294c458a2b02214d5c74460b1c50eed8
+%global commit 1f98b6ab40c19cd7f232c76637417c1d1955b86f
 %global soc     sc7280
 Name:           alsa-ucm-conf-qcom-%{soc}
 Version:        1
-Release:        0%{?dist}
+Release:        1%{?dist}
 Summary:        ALSA UCM configuration for %{soc} devices
 License:        BSD-3-Clause
-URL:            https://github.com/%{soc}-mainline/alsa-ucm-conf
+URL:            https://github.com/sc7280-mainline/alsa-ucm-conf
 Source0:        %{url}/archive/%{commit}.tar.gz
 BuildArch:      noarch
 
