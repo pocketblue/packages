@@ -1,14 +1,14 @@
 %undefine      _debugsource_packages
 %global soc    sc7280
-%global branch spacewar-6.17
-Version:       6.17.0
+%global tag    v6.18.7-sc7280
+Version:       6.18.7
 Release:       1.%{soc}%{?dist}
 ExclusiveArch: aarch64
 Name:          kernel
 Summary:       mainline kernel for %{soc}
 License:       GPLv2
-URL:           https://github.com/mainlining/linux
-Source0:       %{url}/archive/refs/heads/danila/%{branch}.tar.gz
+URL:           https://github.com/sc7280-mainline/linux
+Source0:       %{url}/archive/refs/tags/%{tag}.tar.gz
 Source1:       extra-%{soc}.config
 
 Provides:      kernel               = %{version}-%{release}
@@ -26,7 +26,7 @@ BuildRequires:   bc bison dwarves diffutils elfutils-devel findutils gcc gcc-c++
 mainline kernel for %{soc}
 
 %prep
-%autosetup -n linux-danila-%{branch}
+%autosetup -n linux-%{version}-%{soc}
 make defconfig %{soc}.config
 
 %build
@@ -36,8 +36,7 @@ make olddefconfig
 make EXTRAVERSION="-%{release}.%{_target_cpu}" LOCALVERSION= -j%{?_smp_build_ncpus} Image modules dtbs
 
 %install
-make EXTRAVERSION="-%{release}.%{_target_cpu}" LOCALVERSION= INSTALL_MOD_PATH=%{buildroot}/usr INSTALL_HDR_PATH=%{buildroot}/usr modules_install headers_install
-install -Dm644 arch/arm64/boot/dts/qcom/sm7325-nothing-spacewar.dtb %{buildroot}/usr/lib/modules/%{uname_r}/devicetree
+make EXTRAVERSION="-%{release}.%{_target_cpu}" LOCALVERSION= INSTALL_MOD_PATH=%{buildroot}/usr INSTALL_HDR_PATH=%{buildroot}/usr INSTALL_DTBS_PATH=%{buildroot}/usr/lib/modules/%{uname_r}/dtbs modules_install headers_install dtbs_install
 install -Dm644 arch/arm64/boot/Image %{buildroot}/usr/lib/modules/%{uname_r}/vmlinuz
 install -Dm644 System.map            %{buildroot}/usr/lib/modules/%{uname_r}/System.map
 install -Dm644 .config               %{buildroot}/usr/lib/modules/%{uname_r}/config
