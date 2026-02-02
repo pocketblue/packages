@@ -10,6 +10,7 @@ These packages are not available in any other repository
 - q6voiced
 - ath10k-shutdown
 - qca-swiss-army-knife
+- usb-network
 
 ### Backported packages
 
