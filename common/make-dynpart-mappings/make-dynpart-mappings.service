@@ -1,0 +1,8 @@
+[Unit]
+Description=Map Android dynamic partitions
+After=-.mount
+ConditionPathExists=/dev/disk/by-partlabel/%i
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/make-dynpart-mappings /dev/disk/by-partlabel/%i
