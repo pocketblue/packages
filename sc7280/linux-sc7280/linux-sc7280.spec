@@ -2,7 +2,7 @@
 %global soc    sc7280
 %global commit 2f12f5e50225dcd556455e7a4dc4751832b7be88
 Version:       6.19.0
-Release:       906.%{soc}%{?dist}
+Release:       907.%{soc}%{?dist}
 ExclusiveArch: aarch64
 Name:          kernel
 Summary:       mainline kernel for %{soc}
