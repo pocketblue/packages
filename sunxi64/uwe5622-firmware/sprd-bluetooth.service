@@ -1,0 +1,13 @@
+[Unit]
+Description=SPRD Bluetooth
+After=bluetooth.service bluetooth.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/sbin/rfkill unblock all
+ExecStart=/usr/bin/sprd-bluetooth
+TimeoutSec=0
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
