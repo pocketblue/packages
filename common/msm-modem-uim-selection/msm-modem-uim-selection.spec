@@ -18,9 +18,6 @@ BuildRequires:  systemd-rpm-macros
 %description
 %{summary}
 
-%prep
-%autosetup
-
 %install
 install -Dm755 %{SOURCE0} -t %{buildroot}%{_libexecdir}
 install -Dm644 %{SOURCE1} -t %{buildroot}%{_unitdir}
