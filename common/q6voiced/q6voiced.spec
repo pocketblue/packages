@@ -1,13 +1,14 @@
 Name:           q6voiced
 Version:        0.2.0
-Release:        1
+Release:        2
 Summary:        A userspace daemon for the QDSP6 voice call audio driver
 
 License:        MIT
 URL:            https://gitlab.postmarketos.org/postmarketOS/q6voiced
-Source:         %{url}/-/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:        %{url}/-/archive/%{version}/%{name}-%{version}.tar.gz
 
-Source:         %{name}.service
+Source1:        %{name}.service
+Source2:        %{name}@.service
 
 BuildRequires:  gcc
 BuildRequires:  meson
@@ -31,20 +32,22 @@ A userspace daemon for the QDSP6 voice call audio driver
 %install
 %meson_install
 install -Dm644 %{SOURCE1} -t %{buildroot}%{_unitdir}/
+install -Dm644 %{SOURCE2} -t %{buildroot}%{_unitdir}/
 
 %post
-%systemd_post %{name}.service
+%systemd_post %{name}.service %{name}@.service
 
 %preun
-%systemd_preun %{name}.service
+%systemd_preun %{name}.service %{name}@.service
 
 %postun
-%systemd_postun_with_restart %{name}.service
+%systemd_postun_with_restart %{name}.service %{name}@.service
 
 %files
 %license LICENSE
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
+%{_unitdir}/%{name}@.service
 
 %changelog
 %autochangelog
