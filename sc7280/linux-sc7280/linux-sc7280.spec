@@ -2,7 +2,7 @@
 %global soc    sc7280
 %global commit 2f12f5e50225dcd556455e7a4dc4751832b7be88
 Version:       6.19.0
-Release:       911.%{soc}%{?dist}
+Release:       912.%{soc}%{?dist}
 ExclusiveArch: aarch64
 Name:          kernel
 Summary:       mainline kernel for %{soc}
@@ -30,7 +30,7 @@ mainline kernel for %{soc}
 
 %build
 make defconfig
-scripts/kconfig/merge_config.sh -m .config arch/arm64/configs/fp5_defconfig %{SOURCE1}
+scripts/kconfig/merge_config.sh -m .config %{SOURCE1}
 make olddefconfig
 make EXTRAVERSION="-%{release}.%{_target_cpu}" LOCALVERSION= -j%{?_smp_build_ncpus} Image modules dtbs
 
