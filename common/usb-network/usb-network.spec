@@ -1,6 +1,6 @@
 Name:             usb-network
-Version:          1
-Release:          3%{?dist}
+Version:          2
+Release:          1%{?dist}
 Summary:          USB gadget network and serial service
 License:          AGPL-3.0-or-later
 URL:              https://github.com/pocketblue/packages

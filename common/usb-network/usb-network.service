@@ -5,6 +5,7 @@ Requires=modprobe@usbfunc:acm.service modprobe@usbfunc:ncm.service modprobe@libc
 Before=serial-getty@ttyGS0.service
 DefaultDependencies=no
 SurviveFinalKillSignal=yes
+ConditionPathExistsGlob=!/sys/kernel/config/usb_gadget/*
 
 [Service]
 RuntimeDirectory=usb-gadget
