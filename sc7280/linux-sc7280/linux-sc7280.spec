@@ -2,14 +2,15 @@
 %global soc    sc7280
 %global commit 2f12f5e50225dcd556455e7a4dc4751832b7be88
 Version:       6.19.0
-Release:       913.%{soc}%{?dist}
+Release:       914.%{soc}%{?dist}
 ExclusiveArch: aarch64
 Name:          kernel
 Summary:       mainline kernel for %{soc}
 License:       GPLv2
 URL:           https://github.com/sc7280-mainline/linux
 Source0:       %{url}/archive/%{commit}.tar.gz
-Source1:       config-fp5.aarch64
+Source1:       config-postmarketos-qcom-sc7280.aarch64
+Source2:       extra-sc7280.config
 
 Provides:      kernel               = %{version}-%{release}
 Provides:      kernel-core          = %{version}-%{release}
@@ -29,7 +30,10 @@ mainline kernel for %{soc}
 %autosetup -n linux-%{commit}
 
 %build
+# Start from the pmOS config (which is known-working for camera, BT, sensors)
+# then merge Fedora-specific options (SELinux, containers, filesystems, etc.)
 cp %{SOURCE1} .config
+KCONFIG_CONFIG=.config scripts/kconfig/merge_config.sh .config %{SOURCE2}
 make EXTRAVERSION="-%{release}.%{_target_cpu}" LOCALVERSION= -j%{?_smp_build_ncpus} Image modules dtbs
 
 %install
