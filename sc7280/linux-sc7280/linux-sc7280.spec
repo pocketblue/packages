@@ -2,7 +2,7 @@
 %global soc    sc7280
 %global commit 2f12f5e50225dcd556455e7a4dc4751832b7be88
 Version:       6.19.0
-Release:       912.%{soc}%{?dist}
+Release:       913.%{soc}%{?dist}
 ExclusiveArch: aarch64
 Name:          kernel
 Summary:       mainline kernel for %{soc}
@@ -29,9 +29,7 @@ mainline kernel for %{soc}
 %autosetup -n linux-%{commit}
 
 %build
-make defconfig
-scripts/kconfig/merge_config.sh -m .config %{SOURCE1}
-make olddefconfig
+cp %{SOURCE1} .config
 make EXTRAVERSION="-%{release}.%{_target_cpu}" LOCALVERSION= -j%{?_smp_build_ncpus} Image modules dtbs
 
 %install
