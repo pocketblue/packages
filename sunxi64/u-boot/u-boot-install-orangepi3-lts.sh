@@ -25,7 +25,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 start_lba=16
-ss=512
+ss=512 # Hardware sector size
 start_bytes=$(( start_lba * ss ))
 
-dd if="$uboot_bin" of=$disk oflag=seek_bytes seek="$start_bytes" conv=notrunc,fsync status=progress
+dd if="$uboot_bin" of=$disk oflag=seek_bytes bs=4K seek="$start_bytes" conv=notrunc,fsync status=progress
