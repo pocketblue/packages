@@ -1,7 +1,7 @@
 %undefine        _debugsource_packages
 %global soc      sm8150
 Version:         6.16.0
-Release:         6.rodriguezst.%{soc}%{?dist}
+Release:         7.rodriguezst.%{soc}%{?dist}
 ExclusiveArch:   aarch64
 Name:            kernel
 Summary:         mainline kernel for %{soc}
@@ -9,7 +9,6 @@ License:         GPLv2
 URL:             https://github.com/rodriguezst/linux
 Source0:         %{url}/archive/refs/heads/v%{version}-nabu.tar.gz
 Source1:         extra-%{soc}.config
-Patch0:          rotation.patch
 
 Provides:        kernel               = %{version}-%{release}
 Provides:        kernel-core          = %{version}-%{release}
