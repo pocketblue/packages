@@ -1,15 +1,16 @@
 %undefine      _debugsource_packages
 %global soc    sc7280
-%global tag    v6.18.7-sc7280
-Version:       6.18.7
-Release:       1.%{soc}%{?dist}
+%global commit 2f12f5e50225dcd556455e7a4dc4751832b7be88
+Version:       6.19.0
+Release:       917.%{soc}%{?dist}
 ExclusiveArch: aarch64
 Name:          kernel
 Summary:       mainline kernel for %{soc}
 License:       GPLv2
 URL:           https://github.com/sc7280-mainline/linux
-Source0:       %{url}/archive/refs/tags/%{tag}.tar.gz
-Source1:       extra-%{soc}.config
+Source0:       %{url}/archive/%{commit}.tar.gz
+Source1:       config-postmarketos-qcom-sc7280.aarch64
+Source2:       extra-sc7280.config
 
 Provides:      kernel               = %{version}-%{release}
 Provides:      kernel-core          = %{version}-%{release}
@@ -18,7 +19,7 @@ Provides:      kernel-headers       = %{version}-%{release}
 Provides:      kernel-modules       = %{version}-%{release}
 Provides:      kernel-modules-core  = %{version}-%{release}
 
-BuildRequires:   bc bison dwarves diffutils elfutils-devel findutils gcc gcc-c++ git-core hmaccalc hostname make openssl openssl-devel perl-interpreter rsync tar which flex bzip2 xz zstd python3 python3-devel python3-pyyaml rust rust-src bindgen rustfmt clippy opencsd-devel net-tools glibc-static
+BuildRequires: bc bison dwarves diffutils elfutils-devel findutils gcc gcc-c++ git-core hmaccalc hostname make openssl openssl-devel perl-interpreter rsync tar which flex bzip2 xz zstd python3 python3-devel python3-pyyaml rust rust-src bindgen rustfmt clippy opencsd-devel net-tools glibc-static
 
 %global uname_r %{version}-%{release}.%{_target_cpu}
 
@@ -26,12 +27,11 @@ BuildRequires:   bc bison dwarves diffutils elfutils-devel findutils gcc gcc-c++
 mainline kernel for %{soc}
 
 %prep
-%autosetup -n linux-%{version}-%{soc}
+%autosetup -n linux-%{commit}
 
 %build
-make defconfig
-scripts/kconfig/merge_config.sh -m .config %{SOURCE1}
-make olddefconfig
+cp %{SOURCE1} .config
+KCONFIG_CONFIG=.config scripts/kconfig/merge_config.sh .config %{SOURCE2}
 make EXTRAVERSION="-%{release}.%{_target_cpu}" LOCALVERSION= -j%{?_smp_build_ncpus} Image modules dtbs
 
 %install
@@ -47,10 +47,7 @@ install -d %{buildroot}/usr/lib/ostree-boot
 /usr/lib/modules/%{uname_r}
 
 %posttrans
-set -e
-depmod -a %{uname_r}
-dracut /usr/lib/modules/%{uname_r}/initramfs.img %{uname_r}
-kernel-install add %{uname_r} /usr/lib/modules/%{uname_r}/vmlinuz /usr/lib/modules/%{uname_r}/initramfs.img
+depmod -a -v %{uname_r}
 
 %changelog
 %autochangelog
