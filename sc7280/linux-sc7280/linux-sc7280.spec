@@ -1,13 +1,13 @@
 %undefine      _debugsource_packages
 %global soc    sc7280
-%global commit 2f12f5e50225dcd556455e7a4dc4751832b7be88
+%global commit 751b1f05812d9ea462cb722bd929ec7dedf85693
 Version:       6.19.0
-Release:       917.%{soc}%{?dist}
+Release:       918.%{soc}%{?dist}
 ExclusiveArch: aarch64
 Name:          kernel
 Summary:       mainline kernel for %{soc}
 License:       GPLv2
-URL:           https://github.com/sc7280-mainline/linux
+URL:           https://github.com/LorbusChris/linux-sc7280
 Source0:       %{url}/archive/%{commit}.tar.gz
 Source1:       config-postmarketos-qcom-sc7280.aarch64
 Source2:       extra-sc7280.config
