@@ -27,7 +27,7 @@ BuildRequires: bc bison dwarves diffutils elfutils-devel findutils gcc gcc-c++ g
 mainline kernel for %{soc}
 
 %prep
-%autosetup -n linux-%{commit}
+%autosetup -n linux-sc7280-%{commit}
 
 %build
 cp %{SOURCE1} .config
