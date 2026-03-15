@@ -15,6 +15,7 @@ ALSA Use Case Manager configuration settings for sm8250-based devices.
 %install
 install -Dm644 "%{SOURCE1}" "%{buildroot}/usr/share/alsa/ucm2/conf.d/sm8250/Xiaomi Pad 6.conf"
 install -Dm644 "%{SOURCE2}" "%{buildroot}/usr/share/alsa/ucm2/Qualcomm/sm8250/HiFi_pipa.conf"
+ln -s "%{buildroot}/usr/share/alsa/ucm2/conf.d/sm8250/Xiaomi Pad 6.conf" "%{buildroot}/usr/share/alsa/ucm2/conf.d/sm8250/Xiaomi-Pad6-pipa-M82.conf"
 
 %files
 /usr/share/alsa/ucm2/Qualcomm/sm8250/HiFi_pipa.conf
