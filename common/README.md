@@ -16,10 +16,6 @@ These packages are not available in any other repository
 
 Packages from other repositories backported to older Fedora branches
 
-| package | source |
-|---------|--------|
-| qbootctl | [fedora-remix-mobility/packages](https://github.com/fedora-remix-mobility/packages) |
-
 ### Patched packages
 
 Patched packages from other repositories
