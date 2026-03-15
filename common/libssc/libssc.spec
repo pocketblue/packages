@@ -1,6 +1,6 @@
 Name:           libssc
-Version:        0.2.2
-Release:        %autorelease
+Version:        0.4.1
+Release:        1
 Summary:        Library to expose Qualcomm Sensor Core sensors
 
 License:        GPL-3.0-or-later
@@ -51,7 +51,7 @@ Requires:   %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %{_bindir}/ssc-server
 %{_bindir}/ssc-server-tests
 %{_bindir}/ssccli
-%{_libdir}/%{name}.so.0
+%{_libdir}/%{name}.so.2
 
 %files devel
 %{_includedir}/%{name}
@@ -61,6 +61,8 @@ Requires:   %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %files -n python3-ssc
 %pycached %{python3_sitelib}/qmi.py
 %pycached %{python3_sitelib}/ssc.py
+%{python3_sitelib}/ssc-server
+%{python3_sitelib}/ssc-server-tests
 
 %changelog
 %autochangelog
