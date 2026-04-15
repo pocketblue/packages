@@ -1,7 +1,7 @@
 %undefine        _debugsource_packages
 %global soc      sm8150
 Version:         6.16.0
-Release:         7.rodriguezst.%{soc}%{?dist}
+Release:         8.rodriguezst.%{soc}%{?dist}
 ExclusiveArch:   aarch64
 Name:            kernel
 Summary:         mainline kernel for %{soc}
