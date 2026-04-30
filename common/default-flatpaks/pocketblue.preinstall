@@ -1,0 +1,39 @@
+[Flatpak Preinstall org.gnome.clocks]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.gnome.TextEditor]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.gnome.Epiphany]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.gnome.Loupe]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.gnome.Calendar]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.gnome.Snapshot]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.gnome.Calls]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.gnome.Contacts]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.gnome.Showtime]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall sm.puri.Chatty]
+Branch=stable
+IsRuntime=false

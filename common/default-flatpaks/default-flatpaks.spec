@@ -1,57 +1,44 @@
 Name:             default-flatpaks
-Version:          1.10
+Version:          2.0
 Release:          0%{?dist}
-Summary:          install some flatpaks on first system boot
+Summary:          Install default Flatpak applications on first boot
 License:          AGPL-3.0
-URL:              https://github.com/gmanka-flatpaks/default-flatpaks
-Source0:          %{url}/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+URL:              https://github.com/pocketblue/packages
+Source0:          flatpak-preinstall.service
+Source1:          pocketblue.preinstall
+Source2:          90-default-flatpaks.preset
+Source3:          default-flatpaks.conf
 BuildArch:        noarch
-Requires:         flatpak libnotify
+Requires:         flatpak
 Requires(post):   systemd
 Requires(postun): systemd
 BuildRequires:    systemd-rpm-macros
 %{?systemd_requires}
-%{?systemd_user_requires}
 
 %description
-install some flatpaks on first system boot
+%{summary}
 
-%prep
-%autosetup -n %{name}-%{version}
-%build
 %install
-install -Dm0644 apps-list %{buildroot}%{_sysconfdir}/default-flatpaks/apps-list
-install -Dm0644 default-flatpaks.tmpfiles %{buildroot}%{_tmpfilesdir}/default-flatpaks.conf
-install -Dm0644 flatpak-add-flathub-repo.service %{buildroot}%{_unitdir}/flatpak-add-flathub-repo.service
-install -Dm0644 default-flatpaks.service %{buildroot}%{_userunitdir}/default-flatpaks.service
-install -Dm0644 default-flatpaks.path %{buildroot}%{_userunitdir}/default-flatpaks.path
-install -Dm0644 90-default-flatpaks.preset %{buildroot}%{_prefix}/lib/systemd/user-preset/90-default-flatpaks.preset
-install -Dm0644 90-flatpak-add-flathub-repo.preset %{buildroot}%{_prefix}/lib/systemd/system-preset/90-flatpak-add-flathub-repo.preset
+install -Dm0644 %{SOURCE0} -t %{buildroot}%{_unitdir}
+install -Dm0644 %{SOURCE1} -t %{buildroot}%{_datadir}/flatpak/preinstall.d
+install -Dm0644 %{SOURCE2} -t %{buildroot}%{_prefix}/lib/systemd/system-preset
+install -Dm0644 %{SOURCE3} -t %{buildroot}%{_tmpfilesdir}
 
 %post
-%systemd_post      flatpak-add-flathub-repo.service
-%systemd_user_post default-flatpaks.service default-flatpaks.path
+%systemd_post      flatpak-preinstall.service
 %tmpfiles_create   %{_tmpfilesdir}/default-flatpaks.conf
 
 %preun
-%systemd_preun      flatpak-add-flathub-repo.service
-%systemd_user_preun default-flatpaks.service default-flatpaks.path
+%systemd_preun      flatpak-preinstall.service
 
 %postun
-%systemd_postun_with_restart      flatpak-add-flathub-repo.service
-%systemd_user_postun_with_restart default-flatpaks.service default-flatpaks.path
+%systemd_postun_with_restart      flatpak-preinstall.service
 
 %files
-%license license.md
-%doc readme.md
-%config(noreplace) %{_sysconfdir}/default-flatpaks/apps-list
+%{unitdir}/flatpak-preinstall.service
+%{_datadir}/flatpak/preinstall.d/pocketblue.preinstall
+%{_prefix}/lib/systemd/system-preset/90-default-flatpaks.preset
 %{_tmpfilesdir}/default-flatpaks.conf
-%{_unitdir}/flatpak-add-flathub-repo.service
-%{_userunitdir}/default-flatpaks.service
-%{_userunitdir}/default-flatpaks.path
-%{_prefix}/lib/systemd/system-preset/90-flatpak-add-flathub-repo.preset
-%{_prefix}/lib/systemd/user-preset/90-default-flatpaks.preset
-%ghost %{_localstatedir}/lib/default-flatpaks/flathub-initialized
 %ghost %{_localstatedir}/lib/default-flatpaks/default-flatpaks-initialized
 
 %changelog

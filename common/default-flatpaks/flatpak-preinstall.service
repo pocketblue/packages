@@ -1,0 +1,17 @@
+[Unit]
+Description=Preinstall Flatpak applications
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=!/var/lib/default-flatpaks/default-flatpaks-initialized
+Documentation=man:flatpak-preinstall(1)
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/flatpak preinstall -y
+ExecStartPost=touch /var/lib/default-flatpaks/default-flatpaks-initialized
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
