@@ -35,7 +35,7 @@ install -Dm0644 %{SOURCE3} -t %{buildroot}%{_tmpfilesdir}
 %systemd_postun_with_restart      flatpak-preinstall.service
 
 %files
-%{unitdir}/flatpak-preinstall.service
+%{_unitdir}/flatpak-preinstall.service
 %{_datadir}/flatpak/preinstall.d/pocketblue.preinstall
 %{_prefix}/lib/systemd/system-preset/90-default-flatpaks.preset
 %{_tmpfilesdir}/default-flatpaks.conf
