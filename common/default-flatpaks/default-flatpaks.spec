@@ -9,7 +9,7 @@ Source1:          pocketblue.preinstall
 Source2:          90-default-flatpaks.preset
 Source3:          default-flatpaks.conf
 BuildArch:        noarch
-Requires:         flatpak
+Requires:         flatpak dbus-daemon
 Requires(post):   systemd
 Requires(postun): systemd
 BuildRequires:    systemd-rpm-macros
