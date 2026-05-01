@@ -1,0 +1,19 @@
+[Unit]
+Description=Preinstall Flatpak applications
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=!/var/lib/default-flatpaks/default-flatpaks-initialized
+Documentation=man:flatpak-preinstall(1)
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=sh -c 'until ping -c1 status.flathub.org >/dev/null 2>&1 ; do sleep 10; done'
+ExecStart=/usr/bin/dbus-run-session /usr/bin/flatpak remote-modify --prio 2 flathub
+ExecStart=/usr/bin/dbus-run-session /usr/bin/flatpak preinstall -y
+ExecStartPost=touch /var/lib/default-flatpaks/default-flatpaks-initialized
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
