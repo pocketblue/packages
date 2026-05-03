@@ -21,6 +21,17 @@ BuildRequires: kmodtool
 %{summary}
 
 
+%package       common
+Summary:       Common files for the %{modname} kernel module
+BuildArch:     noarch
+Provides:      %{modname}-kmod-common = %{version}-%{release}
+
+%description   common
+%{summary}
+
+%files         common
+
+
 %prep
 %{?kmodtool_check}
 
