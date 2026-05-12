@@ -1,14 +1,13 @@
-%global _commit 2961533bc9151a4fc14727c851ac6a08e35545d0
+%global _commit 576f7cb3848179b36ef92420a1ab4c910b53b357
 
 Name: kernel
 ExclusiveArch: aarch64
-Version: 6.15.8
-Release: 15.pipa
+Version: 6.18.2
+Release: 2.pipa
 Summary: AIO package for linux kernel, modules and headers for Xiaomi Pad 6 (pipa).
 URL: https://github.com/pipa-mainline/linux
 Source1: %{url}/archive/%{_commit}/linux-%{_commit}.tar.gz
 Source2: pipa.config
-Source3: add-touchpad-button-event.patch
 License: GPL
 
 Provides: kernel = %{version}-%{release}
@@ -42,7 +41,6 @@ Mainline kernel for Xiaomi Pad 6 (pipa).
 tar -xzf %{SOURCE1}
 cd linux-%{_commit}
 cp %{SOURCE2} arch/arm64/configs/pipa.config
-patch -p1 < %{SOURCE3}
 
 %build
 cd linux-%{_commit}
