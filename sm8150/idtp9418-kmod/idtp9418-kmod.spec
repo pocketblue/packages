@@ -11,8 +11,9 @@ Summary:        idtp9418 wireless charger driver
 License:        GPL-2.0-only
 URL:            https://github.com/nik012003/idtp9418-mainline
 Source0:        %{url}/archive/eaa2719e71f5ad762250e0705fb13f38f8856cfc.tar.gz
+Source1:        idtp9418.conf
 
-BuildRequires: kmodtool
+BuildRequires:  kmodtool
 
 %{expand:%(kmodtool --target %{_target_cpu} --kmodname %{modname} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null)}
 
@@ -28,8 +29,6 @@ Provides:      %{modname}-kmod-common = %{version}-%{release}
 
 %description   common
 %{summary}
-
-%files         common
 
 
 %prep
@@ -56,11 +55,18 @@ for kernel_version in %{?kernel_versions}; do
     install -D -m 755 _kmod_build_${kernel_version%%___*}/*.ko %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
 done
 
+# idtp9418 doesn't load automatically
+install -Dm644 "%{SOURCE1}" "%{buildroot}%{_prefix}/lib/modules-load.d/%{modname}.conf"
+
 %{?akmod_install}
 
 
 %files
 # filled by kmodtool
+
+
+%files         common
+%{_prefix}/lib/modules-load.d/%{modname}.conf
 
 
 %changelog
