@@ -36,6 +36,11 @@ cat %{SOURCE2} | while read FILE; do
   mkdir -p "%{buildroot}%{_datadir}/alsa/$(dirname "$FILE")"
   cp -a "$FILE" "%{buildroot}%{_datadir}/alsa/$FILE"
 done
+
+# Fix for U-Boot
+sdm845_conf_dir="%{buildroot}%{_datadir}/alsa/ucm2/conf.d/sdm845"
+ln -s "Xiaomi Poco F1.conf" "${sdm845_conf_dir}/xiaomi-XiaomiPocophoneF1EBBG-.conf"
+ln -s "Xiaomi Poco F1.conf" "${sdm845_conf_dir}/xiaomi-XiaomiPocophoneF1Tianma-.conf"
 	
 %files
 %{_datadir}/alsa/ucm2/Google/*
