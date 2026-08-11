@@ -22,6 +22,7 @@ ln -s "Xiaomi Pad 6.conf" "%{buildroot}/usr/share/alsa/ucm2/conf.d/sm8250/xiaomi
 /usr/share/alsa/ucm2/Qualcomm/sm8250/HiFi_pipa.conf
 /usr/share/alsa/ucm2/conf.d/sm8250/Xiaomi\ Pad\ 6.conf
 /usr/share/alsa/ucm2/conf.d/sm8250/Xiaomi-Pad6-pipa-M82.conf
+/usr/share/alsa/ucm2/conf.d/sm8250/xiaomi-XiaomiPad6-.conf
 
 %changelog
 %autochangelog
