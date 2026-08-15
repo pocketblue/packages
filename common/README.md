@@ -4,11 +4,18 @@
 
 These packages are not available in any other repository
 
+- ath10k-shutdown
+- bootmac
 - default-flatpaks
+- hexagonrpc
+- idtp9418-kmod
+- libssc
+- make-dynpart-mappings
 - mobile-config-firefox
+- mobility-tweaks
+- msm-modem-uim-selection
 - nekotorch
 - q6voiced
-- ath10k-shutdown
 - qca-swiss-army-knife
 - usb-network
 
@@ -22,4 +29,4 @@ Patched packages from other repositories
 
 | package | source |
 |---------|--------|
-| rmtfs | upstream fedora |
+| iio-sensor-proxy | upstream fedora, built from a newer upstream release with Qualcomm SSC (libssc) sensor support |
