@@ -1,22 +1,17 @@
 Name:       hexagonrpc
-Version:    0.4.0
+Version:    0.5.0
 Release:    1
 Summary:    FastRPC ioctl wrapper and a reverse tunnel
 
 License:    GPLv3+
 URL:        https://github.com/linux-msm/hexagonrpc/
 Source0:    https://github.com/linux-msm/%{name}/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-# Source of those sources: https://gitlab.postmarketos.org/postmarketOS/pmaports/-/tree/master/extra-repos/systemd/systemd-services
-Source1:    hexagonrpcd-adsp-rootpd.service
-Source2:    hexagonrpcd-adsp-sensorspd.service
-Source3:    hexagonrpcd-sdsp.service
 
 Source4:    sysusers.conf
 Source5:    10-fastrpc.rules
 
 BuildRequires:  gcc
 BuildRequires:  meson
-BuildRequires:  systemd-rpm-macros
 BuildRequires:  systemd-rpm-macros
 Requires(post): systemd
 
@@ -52,11 +47,13 @@ Requires: %{name} = %{version}-%{release}
 mkdir -p %{buildroot}%{_includedir}
 cp -a include/libhexagonrpc %{buildroot}%{_includedir}
 
-# Install systemd units
-mkdir -p $RPM_BUILD_ROOT%{_unitdir}
-install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/hexagonrpcd-adsp-rootpd.service
-install -D -m 644 %{SOURCE2} %{buildroot}%{_unitdir}/hexagonrpcd-adsp-sensorspd.service
-install -D -m 644 %{SOURCE3} %{buildroot}%{_unitdir}/hexagonrpcd-sdsp.service
+# Upstream installs its systemd units (imported from pmaports) into
+# %%{_libdir}/systemd/system; relocate them to %%{_unitdir}
+if [ "%{_libdir}/systemd/system" != "%{_unitdir}" ]; then
+    mkdir -p %{buildroot}%{_unitdir}
+    mv %{buildroot}%{_libdir}/systemd/system/*.service %{buildroot}%{_unitdir}/
+    rmdir %{buildroot}%{_libdir}/systemd/system %{buildroot}%{_libdir}/systemd
+fi
 
 install -D -m 644 %{SOURCE4} %{buildroot}%{_sysusersdir}/fastrpc.conf
 install -D -m 644 %{SOURCE5} %{buildroot}%{_udevrulesdir}/10-fastrpc.rules
