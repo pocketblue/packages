@@ -1,6 +1,6 @@
 Name: pipa-sound-conf
-Version: 1.4
-Release: 1
+Version: 2.1
+Release: 1%{?dist}
 Summary: Sound settings for Xiaomi Mi Pad 6 (pipa)
 Source1: 51-pipa.conf
 License: Unknown
@@ -15,7 +15,7 @@ Requires: wireplumber
 Wireplumber configuration for Xiaomi Mi Pad 6 (pipa)
 
 %install
-install -Dm644 "%{SOURCE1}" "%{buildroot}/usr/share/wireplumber/wireplumber.conf.d/51-pipa.conf"
+install -Dm644 "%{SOURCE1}" "%{buildroot}%{_datadir}/wireplumber/wireplumber.conf.d/51-pipa.conf"
 
 %files
-/usr/share/wireplumber/wireplumber.conf.d/51-pipa.conf
+%{_datadir}/wireplumber/wireplumber.conf.d/51-pipa.conf
