@@ -1,0 +1,13 @@
+[Unit]
+DefaultDependencies=no
+IgnoreOnIsolate=yes
+Wants=modprobe@g_serial.service
+After=modprobe@g_serial.service
+Conflicts=shutdown.target initrd-switch-root.target
+Before=shutdown.target initrd-switch-root.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/usb-shell
+Restart=always
+RestartSec=1
