@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while [[ ! -c /dev/ttyGS0 ]]; do sleep 1; done
+while :; do
+  stty sane -ixon -ixoff </dev/ttyGS0
+  setsid -wc bash -i </dev/ttyGS0 >/dev/ttyGS0 2>&1
+  sleep 1
+done
