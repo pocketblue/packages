@@ -1,6 +1,6 @@
 %global srcname alsa-ucm-conf
-%global date 20240408
-%global commit de81252f28465fb76e2aa58eb9733b88de2076ea
+%global date 20260510
+%global commit 1b8d290e5aa2ca16b7f2fa8d74910ad19ef88b3a
 %{?commit:%global shortcommit %(c=%{commit}; echo ${c:0:7})}
 
 Name:		alsa-ucm-mobility-sdm845

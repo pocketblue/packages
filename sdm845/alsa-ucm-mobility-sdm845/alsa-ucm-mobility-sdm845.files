@@ -38,4 +38,9 @@ ucm2/conf.d/sdm845/Samsung Galaxy S9.conf
 ucm2/conf.d/sdm845/Xiaomi Poco F1.conf
 ucm2/conf.d/sdm845/ayn-AYNOdinM2-Unknown.conf
 ucm2/conf.d/sdm845/oneplus-OnePlus6-.conf
+ucm2/conf.d/sdm845/oneplus-OnePlus6.conf
 ucm2/conf.d/sdm845/oneplus-OnePlus6T-.conf
+ucm2/conf.d/sdm845/oneplus-OnePlus6T.conf
+ucm2/conf.d/sdm845/shift-SHIFTSHIFT6mq-.conf
+ucm2/conf.d/sdm845/shift-SHIFTSHIFT6mq.conf
+ucm2/conf.d/sdm845/xiaomi-XiaomiPocophoneF1Tianma.conf
